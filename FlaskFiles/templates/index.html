@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='file.css')}}">
+        <link rel="shortcut icon"href="{{ url_for('static', filename='MevzuuLogo.png') }}" >
+        <title >Mevzuu-TCK</title>
+        <meta charset="utf-8">
+
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <div id="mevzuu-form">
+          <h1 class="header">Mevzuu TCK Arama Robotu</h1>
+          <div>
+            <form method="post" action="">
+              <input type="text" name="search" value="{{search}}" placeholder="Arama Metni"></input>
+                <label for="qaChckBxId">Q&A Kullan</label>
+              <input type="checkbox"  id="qaChckBxId" name="qa_chcbx" value="QA">
+              <button  type="submit" >Ara
+              <img  src="{{url_for('static', filename='MevzuuLogo.png')}}"/>
+            </button>
+            </form>
+          </div>
+        </div>
+
+        <ul>
+            {%for i in range(0, len)%}
+                <li>
+                    <input type="checkbox" checked="">
+                    <i></i>
+                    <h2>{{lawHeaders[i]}} / {{scores[i]}}</h2>
+                    <p>{{results[i]}}</p>
+                </li>
+            {%endfor%}
+        </ul>
+
+        {% if (len==0 and search!="") %}
+
+            <div class="alert warning">
+              <p style="color:white;text-align:center;">Dikkat! {{search}} için hiçbir sonuç bulunamadı</p>
+            </div>
+
+        {% endif  %}
+
+    </body>
+</html>
+
